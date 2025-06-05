@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id          String   @id @default(uuid()) @db.Uuid
+  title       String   @db.VarChar(127)
+  category    Category
+  imageUrls   String[] @map("image_urls") @db.VarChar(255) // 1)
+  price       Decimal  @db.Decimal(11, 2)
+  description String   @db.VarChar(8191)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("products")
+}
+
+// 1) здесь существует check-constraint который вручную прописан в миграции,
+//    так как сама prisma не позволяет писать их нативно.
+//    Не более 30 элементов в массиве
+
+enum Category {
+  ELECTRONICS // Электроника
+  COMPUTERS // Компьютеры и комплектующие
+  MOBILE_PHONES // Смартфоны и мобильные устройства
+  AUDIO_VIDEO // Аудио и видео техника
+  HOME_APPLIANCES // Бытовая техника
+  FASHION // Мода и одежда
+  FOOTWEAR // Обувь
+  ACCESSORIES // Аксессуары (ремни, кошельки, сумки)
+  JEWELRY // Украшения
+  BEAUTY // Косметика и парфюмерия
+  HEALTH // Товары для здоровья
+  SPORTS_EQUIPMENT // Спортивные товары
+  OUTDOOR // Товары для активного отдыха и туризма
+  AUTOMOTIVE // Автотовары и аксессуары
+  HOME_FURNISHING // Мебель и интерьер
+  HOME_DECOR // Декор для дома
+  KITCHEN // Товары для кухни
+  GARDENING // Сад и огород
+  PET_SUPPLIES // Товары для животных
+  BABY // Товары для детей и младенцев
+  TOYS // Игрушки и игры
+  BOOKS // Книги и учебная литература
+  OFFICE_SUPPLIES // Канцелярия и офисные товары
+  MUSIC_INSTRUMENTS // Музыкальные инструменты
+  ART_CRAFT // Товары для творчества и искусства
+  COLLECTIBLES // Коллекционные товары
+  TOOLS // Товары для ремонта и строительства
+  GROCERY // Продукты питания
+  BEVERAGES // Напитки
+  SOFTWARE // Программное обеспечение
+  VIDEO_GAMES // Видеоигры и консоли
+  OFFICE_EQUIPMENT // Офисная техника
+  OTHER // Другое
+}
