@@ -1,0 +1,190 @@
+[
+  {
+    "title": "Смартфон Samsung Galaxy S23",
+    "category": "MOBILE_PHONES",
+    "imageUrls": ["https://example.com/samsung1.jpg"],
+    "price": 799.99,
+    "description": "Флагманский смартфон с AMOLED-экраном и мощным процессором"
+  },
+  {
+    "title": "Ноутбук Apple MacBook Pro 14\"",
+    "category": "COMPUTERS",
+    "imageUrls": [
+      "https://example.com/macbook1.jpg",
+      "https://example.com/macbook2.jpg"
+    ],
+    "price": 1999.0,
+    "description": "Профессиональный ноутбук с чипом M2 Pro"
+  },
+  {
+    "title": "Наушники Sony WH-1000XM5",
+    "category": "AUDIO_VIDEO",
+    "imageUrls": ["https://example.com/sony1.jpg"],
+    "price": 349.99,
+    "description": "Беспроводные наушники с шумоподавлением"
+  },
+  {
+    "title": "Кофемашина DeLonghi Magnifica",
+    "category": "HOME_APPLIANCES",
+    "imageUrls": ["https://example.com/delonghi1.jpg"],
+    "price": 599.0,
+    "description": "Автоматическая кофемашина для приготовления эспрессо и капучино"
+  },
+  {
+    "title": "Кроссовки Nike Air Max",
+    "category": "FOOTWEAR",
+    "imageUrls": [
+      "https://example.com/nike1.jpg",
+      "https://example.com/nike2.jpg"
+    ],
+    "price": 129.99,
+    "description": "Классические кроссовки с амортизирующей подошвой"
+  },
+  {
+    "title": "Умные часы Apple Watch Series 8",
+    "category": "ELECTRONICS",
+    "imageUrls": ["https://example.com/watch1.jpg"],
+    "price": 399.0,
+    "description": "Фитнес-трекер с измерением ЭКГ и SpO2"
+  },
+  {
+    "title": "Фен Dyson Supersonic",
+    "category": "BEAUTY",
+    "imageUrls": ["https://example.com/dyson1.jpg"],
+    "price": 429.0,
+    "description": "Мощный фен с интеллектуальным контролем температуры"
+  },
+  {
+    "title": "Велосипед горный Trek Marlin 5",
+    "category": "SPORTS_EQUIPMENT",
+    "imageUrls": ["https://example.com/trek1.jpg"],
+    "price": 649.99,
+    "description": "Горный велосипед для начинающих"
+  },
+  {
+    "title": "Книга 'Clean Code' Роберта Мартина",
+    "category": "BOOKS",
+    "imageUrls": ["https://example.com/book1.jpg"],
+    "price": 39.99,
+    "description": "Классическое руководство по написанию чистого кода"
+  },
+  {
+    "title": "Игровая консоль PlayStation 5",
+    "category": "VIDEO_GAMES",
+    "imageUrls": [
+      "https://example.com/ps5_1.jpg",
+      "https://example.com/ps5_2.jpg"
+    ],
+    "price": 499.99,
+    "description": "Новейшая игровая консоль от Sony"
+  },
+  {
+    "title": "Монитор Dell 27\" 4K",
+    "category": "COMPUTERS",
+    "imageUrls": ["https://example.com/dell1.jpg"],
+    "price": 349.0,
+    "description": "Монитор с высоким разрешением для профессиональной работы"
+  },
+  {
+    "title": "Зубная щетка Oral-B iO",
+    "category": "HEALTH",
+    "imageUrls": ["https://example.com/oralb1.jpg"],
+    "price": 199.99,
+    "description": "Электрическая зубная щетка с технологией AI"
+  },
+  {
+    "title": "Набор Lego Star Wars",
+    "category": "TOYS",
+    "imageUrls": ["https://example.com/lego1.jpg"],
+    "price": 149.99,
+    "description": "Конструктор из вселенной Звездных Войн"
+  },
+  {
+    "title": "Кошелек мужской Gucci",
+    "category": "ACCESSORIES",
+    "imageUrls": ["https://example.com/gucci1.jpg"],
+    "price": 450.0,
+    "description": "Кожаный кошелек премиум-класса"
+  },
+  {
+    "title": "Блендер Philips HR3655",
+    "category": "KITCHEN",
+    "imageUrls": ["https://example.com/philips1.jpg"],
+    "price": 89.99,
+    "description": "Мощный блендер для приготовления смузи"
+  },
+  {
+    "title": "Гитара Fender Stratocaster",
+    "category": "MUSIC_INSTRUMENTS",
+    "imageUrls": ["https://example.com/fender1.jpg"],
+    "price": 799.0,
+    "description": "Легендарная электрогитара"
+  },
+  {
+    "title": "Автокресло детское Cybex",
+    "category": "BABY",
+    "imageUrls": ["https://example.com/cybex1.jpg"],
+    "price": 299.99,
+    "description": "Безопасное автокресло для детей"
+  },
+  {
+    "title": "Корм для кошек Royal Canin",
+    "category": "PET_SUPPLIES",
+    "imageUrls": ["https://example.com/royal1.jpg"],
+    "price": 29.99,
+    "description": "Премиальный корм для взрослых кошек"
+  },
+  {
+    "title": "Скейтборд Santa Cruz",
+    "category": "SPORTS_EQUIPMENT",
+    "imageUrls": ["https://example.com/santacruz1.jpg"],
+    "price": 119.99,
+    "description": "Классический скейтборд для улицы"
+  },
+  {
+    "title": "Принтер HP LaserJet Pro",
+    "category": "OFFICE_EQUIPMENT",
+    "imageUrls": ["https://example.com/hp1.jpg"],
+    "price": 249.0,
+    "description": "Монохромный лазерный принтер"
+  },
+  {
+    "title": "Серьги из белого золота",
+    "category": "JEWELRY",
+    "imageUrls": ["https://example.com/jewelry1.jpg"],
+    "price": 599.0,
+    "description": "Элегантные серьги с бриллиантами"
+  },
+  {
+    "title": "Гриль Weber Spirit II",
+    "category": "OUTDOOR",
+    "imageUrls": ["https://example.com/weber1.jpg"],
+    "price": 499.0,
+    "description": "Газовый гриль для дачи и дома"
+  },
+  {
+    "title": "Мяч футбольный Adidas",
+    "category": "SPORTS_EQUIPMENT",
+    "imageUrls": ["https://example.com/adidas1.jpg"],
+    "price": 49.99,
+    "description": "Официальный мяч для профессионального футбола"
+  },
+  {
+    "title": "Микроволновая печь Panasonic",
+    "category": "HOME_APPLIANCES",
+    "imageUrls": ["https://example.com/panasonic1.jpg"],
+    "price": 129.99,
+    "description": "Компактная микроволновка с грилем"
+  },
+  {
+    "title": "Набор отверток Stanley",
+    "category": "TOOLS",
+    "imageUrls": [
+      "https://www.pandashop.md/i/products/86/863952.jpg",
+      "https://avatars.mds.yandex.net/i?id=5e64948ab38a55033b53cdfdbbead1dc135ab5c4-4034571-images-thumbs&n=13",
+      "https://avatars.mds.yandex.net/i?id=963df1ab81fd9cc3db7822847f7e8847_l-5238450-images-thumbs&n=13"
+    ],
+    "price": 39.99,
+    "description": "Профессиональный набор инструментов"
+  }
+]
