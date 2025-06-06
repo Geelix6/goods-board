@@ -1,48 +1,33 @@
-import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-
-export interface Product {
-  id: string
-  title: string
-  category: string
-  imageUrls: string[]
-  price: number
-  description: string
-  createdAt: string
-  updatedAt: string
-}
-
-export interface PaginatedResult<T> {
-  data: T[]
-  total: number
-  page: number
-  limit: number
-  totalPages: number
-}
+import { defineStore } from 'pinia'
+import type { Product } from '@/dto/Product.dto'
+import type { PaginatedResult } from '@/dto/PaginatedResult.dto'
 
 export const useProductStore = defineStore('product', () => {
   const products = ref<Product[]>([])
-  const total = ref(0)
   const page = ref(1)
   const limit = ref(20)
+  const total = ref(0)
   const totalPages = ref(1)
   const loading = ref(false)
   const error = ref<string | null>(null)
 
-  // Базовый URL бэкенда (предполагаем, что фронтенд и бэкенд на одной доменной зоне; иначе укажите полный адрес)
-  const API_BASE = '/api/products'
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
-  /** Загружает продукты c бекенда, учитывая page и limit */
   async function fetchProducts(p: number = 1, l: number = 20) {
     loading.value = true
+    await new Promise((resolve) => setTimeout(resolve, 1211))
     error.value = null
+
     try {
       page.value = p
       limit.value = l
-      const res = await fetch(`${API_BASE}?page=${p}&limit=${l}`)
+
+      const res = await fetch(`${API_BASE_URL}?page=${p}&limit=${l}`)
       if (!res.ok) {
         throw new Error(`Ошибка загрузки: ${res.status}`)
       }
+
       const json: PaginatedResult<Product> = await res.json()
       products.value = json.data
       total.value = json.total
@@ -57,20 +42,16 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
-  /** Получить единичный продукт по ID */
   async function fetchProductById(id: string): Promise<Product | null> {
     loading.value = true
     error.value = null
     try {
-      const res = await fetch(`${API_BASE}/${id}`)
-      if (res.status === 404) {
-        return null
-      }
+      const res = await fetch(`${API_BASE_URL}/${id}`)
+
       if (!res.ok) {
-        throw new Error(`Ошибка загрузки продукта: ${res.status}`)
+        throw new Error(`Ошибка загрузки продукта: ${res.status} ${res.statusText}`)
       }
-      const prod: Product = await res.json()
-      return prod
+      return await res.json()
     } catch (e: any) {
       error.value = e.message || 'Unknown error'
       return null
