@@ -1,59 +1,57 @@
 <template>
-  <div class="container mx-auto px-4 py-6">
-    <button @click="$router.back()" class="mb-4 text-indigo-600 hover:underline">
-      ← Назад к списку
-    </button>
+  <button @click="$router.back()" class="mb-4 text-indigo-600 hover:underline">
+    ← Назад к списку
+  </button>
 
-    <div v-if="loading" class="flex justify-center py-10">
-      <svg
-        class="h-8 w-8 animate-spin text-indigo-600"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <circle
-          class="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          stroke-width="4"
-        ></circle>
-        <path
-          class="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8v4l3.5-3.5L12 4v4a8 8 0 10-8 8h4l-3.5 3.5L4 12z"
-        ></path>
-      </svg>
-    </div>
+  <div v-if="loading" class="flex justify-center py-10">
+    <svg
+      class="h-8 w-8 animate-spin text-indigo-600"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        class="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        stroke-width="4"
+      ></circle>
+      <path
+        class="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8v4l3.5-3.5L12 4v4a8 8 0 10-8 8h4l-3.5 3.5L4 12z"
+      ></path>
+    </svg>
+  </div>
 
-    <div v-if="productStore.error" class="flex flex-col gap-y-2 text-red-600">
-      <span>Не удалось загрузить товар или он не существует</span>
-      <span>{{ productStore.error }}</span>
-    </div>
+  <div v-if="productStore.error" class="flex flex-col gap-y-2 text-red-600">
+    <span>Не удалось загрузить товар или он не существует</span>
+    <span>{{ productStore.error }}</span>
+  </div>
 
-    <div v-if="product && !loading" class="rounded-lg bg-white p-6 shadow">
-      <h1 class="mb-2 text-2xl font-bold">{{ product.title }}</h1>
-      <p class="mb-4 text-sm text-gray-500 capitalize">
-        {{ humanCategory(product.category) }}
-      </p>
-      <div class="mb-4">
-        <img
-          v-for="(url, idx) in product.imageUrls"
-          :key="idx"
-          :src="url"
-          alt="Product Image"
-          class="mr-2 inline-block h-48 w-1/3 rounded object-cover"
-        />
-      </div>
-      <p class="mb-4 text-xl font-semibold text-green-600">Цена: ${{ product.price }}</p>
-      <p class="mb-4 text-gray-700">{{ product.description }}</p>
-      <p class="text-sm text-gray-400">Добавлено: {{ formatDate(product.createdAt) }}</p>
+  <div v-if="product && !loading" class="rounded-lg bg-white p-6 shadow">
+    <h1 class="mb-2 text-2xl font-bold">{{ product.title }}</h1>
+    <p class="mb-4 text-sm text-gray-500 capitalize">
+      {{ humanCategory(product.category) }}
+    </p>
+    <div class="mb-4">
+      <img
+        v-for="(url, idx) in product.imageUrls"
+        :key="idx"
+        :src="url"
+        alt="Product Image"
+        class="mr-2 inline-block h-48 w-1/3 rounded object-cover"
+      />
     </div>
+    <p class="mb-4 text-xl font-semibold text-green-600">Цена: ${{ product.price }}</p>
+    <p class="mb-4 text-gray-700">{{ product.description }}</p>
+    <p class="text-sm text-gray-400">Добавлено: {{ formatDate(product.createdAt) }}</p>
+  </div>
 
-    <div v-if="!product && !loading && !productStore.error" class="text-gray-500">
-      Товар не найден.
-    </div>
+  <div v-if="!product && !loading && !productStore.error" class="text-gray-500">
+    Товар не найден.
   </div>
 </template>
 

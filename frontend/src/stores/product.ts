@@ -25,7 +25,7 @@ export const useProductStore = defineStore('product', () => {
 
       const res = await fetch(`${API_BASE_URL}?page=${p}&limit=${l}`)
       if (!res.ok) {
-        throw new Error(`Ошибка загрузки: ${res.status}`)
+        throw new Error(`Ошибка загрузки: ${res.status} ${res.statusText}`)
       }
 
       const json: PaginatedResult<Product> = await res.json()
