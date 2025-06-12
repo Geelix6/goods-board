@@ -1,0 +1,51 @@
+# Ignore node modules
+node_modules/
+
+# Ignore local editor/project settings
+.vscode/
+.idea/
+
+# Ignore formatter/linter configs
+.editorconfig
+.prettierrc.json
+eslint.config.ts
+
+#
+*.md
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker artifacts
+.dockerignore
+Dockerfile*
+
+# Ignore logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+
+# Build output
+dist/
+
+# Test artifacts and configs
+coverage/
+.cypress/
+cypress/
+cypress.config.ts
+**/*.spec.js
+**/*.spec.ts
+**/*.test.ts
+**/*.test.js
+vitest.config.ts
+
+# System files
+.DS_Store
+
+# Optional caches
+.cache/
+.vite/
