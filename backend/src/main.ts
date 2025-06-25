@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import { ConsoleLogger } from '@nestjs/common';
 import { AppModule } from './app.module';
 import {
   Counter,
@@ -9,9 +10,14 @@ import {
 import express from 'express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    bufferLogs: true,
+    logger: new ConsoleLogger({
+      json: true,
+    }),
+  });
 
-  // вариант 1, работа с prom-client напрямую
+  // МОНИТОРИНГ - вариант 1, работа с prom-client напрямую
 
   // 1) собираем «дефолтные» метрики nodejs / process
   collectDefaultMetrics();
@@ -38,6 +44,12 @@ async function bootstrap() {
       res: express.Response,
       next: express.NextFunction,
     ) => {
+      // нет смысла мониторить скорость работы на /metrics и на отдаче статики
+      // статика не только же фавиконка может быть, как лучше сделать проверку?
+      if (req.path.startsWith('/metrics') || req.path === '/favicon.ico') {
+        return next();
+      }
+
       const end = httpRequestDuration.startTimer();
       res.on('finish', () => {
         const route = req.route?.path || req.path;
@@ -60,8 +72,9 @@ async function bootstrap() {
     res.end(await register.metrics());
   });
 
-  await app.listen(process.env.PORT || 3001);
-  console.log(`🚀 Listening on ${process.env.PORT || 3001}`);
+  await app.listen(process.env.PORT || 5001);
+  // это тоже можно было бы через json logger пустить
+  console.log(`🚀 Listening on ${process.env.PORT || 5000}`);
 }
 
 void bootstrap();

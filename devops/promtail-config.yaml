@@ -10,6 +10,7 @@ clients:
 
 scrape_configs:
   - job_name: docker-logs # название джобы, будет потом фигурировать в графане
+    # хотя на самом деле это должно быть только nest js logs, но собирает он со всех контейнеров...
     static_configs:
       - targets:
           - localhost # пока что работаем локально
@@ -18,11 +19,33 @@ scrape_configs:
           __path__: /var/lib/docker/containers/*/*log # забираем логи из докер-контейнера. Контейнер работает, логи улетают в stdout и оттуда всех их забираем
 
     pipeline_stages:
+      - multiline:
+          firstline: "^{"
+          max_wait_time: 1s
+
       - json:
+          # docker logs имеют вид: {"log":"JSON>","stream":"stdout", …}
           expressions:
+            inner: log # сохраняем поле `log` в переменную inner
             stream: stream
             attrs: attrs
             tag: attrs.tag
+            filename: filename
+
+      - json:
+          source: inner
+          expressions:
+            level: level # у pino — level:30, у ConsoleLogger — "level":"log"
+            ts: time # pino: time (ms), ConsoleLogger — нет
+            extra_ts: timestamp # ConsoleLogger: timestamp
+            msg: msg # pino
+            message: message # ConsoleLogger
+            context: context # ConsoleLogger
+            req_id: req.id # pino
+            method: req.method # pino
+            url: req.url # pino
+            status: res.statusCode # pino
+            responseTime: responseTime # pino
 
       - regex:
           expression: (?P<image_name>(?:[^|]*[^|])).(?P<container_name>(?:[^|]*[^|])).(?P<image_id>(?:[^|]*[^|])).(?P<container_id>(?:[^|]*[^|]))
@@ -32,3 +55,12 @@ scrape_configs:
           tag:
           image_name:
           container_name:
+          url:
+          status:
+          method:
+
+      - timestamp:
+          # выбираем pino‑время, если есть; иначе — системное
+          source: |
+            {{ if not (empty .ts) }}ts{{ else }}extra_ts{{ end }}
+          format: unixms

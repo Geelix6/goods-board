@@ -66,8 +66,9 @@ services:
 
   
   # сервис для миграций в бд
-  migrate:
+  migrator:
     image: geelix6/googs-board-backend:latest
+    container_name: migrator
     depends_on:
       - db
     entrypoint: [ "sh", "-c", "npx prisma migrate deploy"]

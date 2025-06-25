@@ -7,9 +7,23 @@ import { PrismaModule } from './prisma/prisma.module';
 //   makeCounterProvider,
 //   makeHistogramProvider,
 // } from '@willsoto/nestjs-prometheus';
+import { LoggerModule } from 'nestjs-pino';
+import { v4 as uuid } from 'uuid';
 
 @Module({
   imports: [
+    LoggerModule.forRoot({
+      pinoHttp: {
+        level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+        timestamp: true,
+        genReqId: () => uuid(),
+        formatters: {
+          level(label: string /* = 'info'|'debug'… */) {
+            return { level: label };
+          },
+        },
+      },
+    }),
     // PrometheusModule.register({
     //   defaultMetrics: { enabled: true },
     //   global: true, -- даже вот это не сработало, странно
